@@ -1,0 +1,88 @@
+### Add new User
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{"username": "lifelover",
+"email": "springishere@gmail.com",
+"password":  "12345678"}
+
+### Add new User with invalid data
+POST http://localhost:80/api/item
+Content-Type: application/json
+
+{"username": "lifelover",
+  "email": "springishere@gmail.com",
+  "password":  "1234567"}
+
+### Modify personal data of a saved User
+PUT http://localhost:8080/api/users/1/personal
+Content-Type: application/json
+
+{"realName": "Jóska Pista",
+"dateOfBirth": "1911-12-13",
+"city": "Budapest"}
+
+### Modify account data
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{"email": "putonyourmuddyboots@gmail.com",
+"password": "87654321"}
+
+### Modify account data with invalid email
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{"email": "putonyourspringbootsgmail.com",
+  "password": "87654321"}
+
+### Create relationship
+PUT http://localhost:8080/api/users/8/6
+
+### List friends of a User
+GET http://localhost:8080/api/users/1/friends
+Accept: application/json
+
+### Delete relationship
+DELETE http://localhost:8080/api/users/1/2
+
+### Get a User by ID
+GET http://localhost:8080/api/users/4
+Accept: application/json
+
+### Search Users by parameters
+GET http://localhost:8080/api/users?city=Budapest&registeredAfter=2023-01-01T00:00:00
+Accept: application/json
+
+### Delete existing User
+DELETE http://localhost:8080/api/users/7
+
+### Delete non-existing User
+DELETE http://localhost:8080/api/users/42
+
+### Upload a new Post
+POST http://localhost:8080/api/posts?userId=7
+Content-Type: multipart/form-data; boundary=----------WebAppBoundary
+
+------------WebAppBoundary
+Content-Disposition: form-data; name="title"
+
+Test post
+------------WebAppBoundary
+Content-Disposition: form-data; name="description"
+
+This is a test post for the socialnetwork exam project. Use it with pleasure! Ciao, blu.
+------------WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="image.jpg";
+Content-Type: image/jpeg
+
+< ../resources/image.jpg
+------------WebAppBoundary--
+
+### Load file content of a Post
+GET http://localhost:8080/api/posts/1/content
+Accept: image/jpeg, image/png
+
+### List ordered Posts of friends of a User
+GET http://localhost:8080/api/posts?friendsOf=4
+Accept: application/json
